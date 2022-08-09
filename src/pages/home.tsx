@@ -1,6 +1,5 @@
+// react
 import React from "react";
-import { useDispatch } from "react-redux";
-import { getUsers } from "../store/slices/users";
 
 const HomePage : React.FC = () => {
     

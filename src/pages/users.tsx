@@ -1,14 +1,15 @@
 // react
 import React from "react";
+
+// components
 import Navbar from "../components/global/navbar";
-
-
+import Users from "../components/users";
 
 const UsersPage : React.FC = () => {
     return (
-        <div className={"dFlex"}>
+        <div className={"usersPage dFlex"}>
             <Navbar />
-            <h2> USERS PAGE </h2>
+            <Users />
         </div>
     )
 }

@@ -22,29 +22,31 @@ const Navbar : React.FC = () => {
 
     return (
         <div className="navbar">
-            <h2 className={"title"}>
-                <img src={AdminPanelLogo} alt="logo" />
-            </h2>
-            <NavLink to="/home" className={"navbarItem"}>
-                <img src={Home} alt="Home" />
-                <span> Home </span> 
+            <div>
+                <h2 className={"title"}>
+                    <img src={AdminPanelLogo} alt="logo" />
+                </h2>
+                <NavLink to="/home" className={"navbarItem"}>
+                    <img src={Home} alt="Home" />
+                    <span> Home </span> 
+                </NavLink>
+                <NavLink to="/users" className={"navbarItem"}> 
+                    <img src={Users} alt="users" />
+                    <span> Users </span> 
+                </NavLink>
+                <NavLink to="/articles" className={"navbarItem"}> 
+                    <img src={Document} alt="articles" />
+                    <span> Articles </span> 
+                </NavLink>
+                <NavLink to="/profile" className={"navbarItem"}> 
+                    <img src={Setting} alt="settings" />
+                    <span> Profile </span> 
+                </NavLink>
+                <NavLink to="/login" className={"navbarItem"}> 
+                    <img src={Logout} alt="Logout" />
+                    <span> Log Out </span> 
             </NavLink>
-            <NavLink to="/users" className={"navbarItem"}> 
-                <img src={Users} alt="users" />
-                <span> Users </span> 
-            </NavLink>
-            <NavLink to="/articles" className={"navbarItem"}> 
-                <img src={Document} alt="articles" />
-                <span> Articles </span> 
-            </NavLink>
-            <NavLink to="/profile" className={"navbarItem"}> 
-                <img src={Setting} alt="settings" />
-                <span> Profile </span> 
-            </NavLink>
-            <NavLink to="/login" className={"navbarItem"}> 
-                <img src={Logout} alt="Logout" />
-                <span> Log Out </span> 
-            </NavLink>
+            </div>
         </div>
     )
 }
