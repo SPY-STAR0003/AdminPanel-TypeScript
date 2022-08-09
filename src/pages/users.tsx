@@ -1,9 +1,15 @@
+// react
 import React from "react";
+import Navbar from "../components/global/navbar";
+
 
 
 const UsersPage : React.FC = () => {
     return (
-        <h2> USERS PAGE </h2>
+        <div className={"dFlex"}>
+            <Navbar />
+            <h2> USERS PAGE </h2>
+        </div>
     )
 }
 

@@ -11,6 +11,7 @@ import App from './App';
 
 // public files
 import './index.css';
+import "./assets/styles/global.scss"
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

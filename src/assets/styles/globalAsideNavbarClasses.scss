@@ -1,0 +1,35 @@
+.asideNav {
+    .asideNavListTitle {
+        margin: .5rem .5rem 0 0;
+        header {
+            border-radius: 6px;
+            transition: all .2s;
+        }
+        .asideNavListItem {
+            display: flex;
+            align-items: center;
+            transition: all .4s;
+            svg {
+                position: relative;
+                top: 1px;
+                margin-left: .5rem;
+                transition: all .4s;
+                opacity: 0;
+            }
+        }
+        .asideNavListItem:hover {
+            transform: translateX(-8px);
+            font-weight: 800;
+            cursor: pointer;
+            svg {
+                opacity: 1;
+            }
+        }
+    }
+    .asideNavListTitle:hover {
+        header {
+            background-color: rgba(238, 238, 238, 0.508);
+            cursor: pointer;
+        }
+    }
+}
