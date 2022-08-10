@@ -78,3 +78,58 @@ button {
   background-color: dodgerblue;
   cursor: pointer;
 }
+
+.secondaryBtn {
+  padding: .5rem 1rem;
+  color: #490091;
+  background-color: #cf9eff5e;
+  border-radius: .5rem;
+  transition: all .1s;
+}
+
+.secondaryBtn:hover {
+  cursor: pointer;
+  background-color: #cf9eff;
+}
+
+.secondaryBtn:active {
+  color: white;
+  background-color: #490091;
+}
+
+.errorBtn {
+  padding: .5rem 1rem;
+  color: #B80A47;
+  background-color: #ff86b079;
+  border-radius: .5rem;
+  transition: all .1s;
+}
+
+.errorBtn:hover {
+  cursor: pointer;
+  background-color: #ff86b0;
+}
+
+.errorBtn:active {
+  color: white;
+  background-color: #B80A47;
+}
+
+.successBtn {
+  padding: .5rem 1rem;
+  color: #13A452;
+  background-color: #acffd07b;
+  border-radius: .5rem;
+  transition: all .1s;
+}
+
+.successBtn:hover {
+  cursor: pointer;
+  background-color: #acffd0fe;
+}
+
+.successBtn:active {
+  color: white;
+  background-color: #13A452;
+}
+

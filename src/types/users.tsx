@@ -6,5 +6,4 @@ export type UserType = {
     role?: string,
     phone?: string,
     status: "active" | "paused" | "warning",
-    age?: string,
 };
