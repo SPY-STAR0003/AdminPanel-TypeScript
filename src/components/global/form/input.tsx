@@ -2,7 +2,6 @@
 import React from "react";
 
 // next ui
-import {Grid, Input, Text} from "@nextui-org/react";
 import { useField } from "formik";
 
 // types
@@ -20,19 +19,18 @@ const MyInput : React.FC<Props> = ({ ...props }) => {
     const [ field, meta] = useField(props)
 
     return (
-        <Grid className="w-3 mtb-4 relative">
-            <Input 
-                underlined
-                color="secondary"
+        <div className="flex flex-col relative m-4">
+            <input
+                className={"p-2 outline-none border-b-2 focus:border-b-gray-400 transition animate__rubberBand border-b-gray-100"}
                 {...props}
                 {...field}
             />
             {
                 meta.touched && meta.error
-                ? <Text className="bold-7 myInputError" size={".7rem"} color="error"> {meta.error} </Text>
+                ? <span className="pl-3 pt-3 text-rose-400 text-[.9rem] font-medium"> {meta.error} </span>
                 : null
             }
-        </Grid>
+        </div>
     )
 } 
 

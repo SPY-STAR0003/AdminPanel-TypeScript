@@ -8,7 +8,11 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import { setUsers } from "../../store/slices/users";
 
-const Users : React.FC = () => {
+interface UsersProps {
+    gridWidth: string | "col-span-9",
+}
+
+const Users : React.FC<UsersProps> = ({gridWidth}) => {
 
     const dispatch = useDispatch<AppDispatch>()
 
@@ -23,7 +27,7 @@ const Users : React.FC = () => {
     }, [])
 
     return (
-        <div className="users p-4">
+        <div className={`${gridWidth} p-4`}>
             <UsersTable />
         </div>
     )

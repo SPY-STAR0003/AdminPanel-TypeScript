@@ -15,7 +15,7 @@ interface Props {
 const MySelect : React.FC<Props> = ({...props}) => {
 
     return (
-        <div className="selectInput">
+        <div className="p-2">
             <label> {props.label} </label>
             <select name={props.name}>
                 <option value={"active"}> active </option>

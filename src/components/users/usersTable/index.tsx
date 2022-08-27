@@ -1,18 +1,15 @@
 // react
 import React from "react";
 
-// next ui
-import { Table } from "@nextui-org/react";
-
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../../store";
 import { setUsers } from "../../../store/slices/users";
-// components
-import RenderCells from "./renderCells";
 
-// schema
-import { tableColumns } from "../../../schema/users"
+// components
+import TableHeader from "./header";
+import TableBody from "./body";
+import { Category } from "../../../assets/icons/icons";
 
 // types
 import { UserType } from "../../../types/users";
@@ -33,35 +30,16 @@ const UsersTable : React.FC = () => {
   }
 
   return (
-      <Table
-        aria-label="Example table with custom cells"
-        css={{
-          height: "auto",
-          minWidth: "100%",
-        }}
-        selectionMode="multiple"
-      >
-        <Table.Header columns={tableColumns}>
-          {(column) => (
-            <Table.Column
-              key={column.uid}
-              hideHeader={column.uid === "actions"}
-              align={column.uid === "actions" ? "center" : "start"}
-            >
-              {column.name}
-            </Table.Column>
-          )}
-        </Table.Header>
-        <Table.Body items={users}>
-          {(item: UserType) => (
-            <Table.Row>
-              {(columnKey) => (
-                <Table.Cell>{RenderCells({item, deleteHandler}, columnKey)}</Table.Cell>
-              )}
-            </Table.Row>
-          )}
-        </Table.Body>
-      </Table>
+    <>
+      <header className={"relative flex justify-center mt-4 mb-8"}>
+        <Category classes="absolute top-3 md:hidden block left-0 w-8 h-8" color="#200E32"/>
+        <h2 className={"first-letter:text-4xl first-letter:font-bold text-2xl text-gray-500"}> Website Users </h2>
+      </header>
+      <table className={"w-full"}>
+        <TableHeader />
+        <TableBody />
+      </table>
+    </>
   );
 }
 
