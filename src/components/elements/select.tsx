@@ -17,7 +17,7 @@ const MySelect : React.FC<Props> = ({...props}) => {
     return (
         <div className="p-2">
             <label> {props.label} </label>
-            <select name={props.name}>
+            <select name={props.name} className={"bg-transparent"}>
                 <option value={"active"}> active </option>
                 <option value={"paused"}> paused </option>
                 <option value={"warning"}> warning </option>

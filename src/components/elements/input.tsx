@@ -5,7 +5,7 @@ import React from "react";
 import { useField } from "formik";
 
 // types
-import { FormValues } from "../../../types/form"
+import { FormValues } from "../../types/form"
 
 interface Props {
     name : string
@@ -21,7 +21,7 @@ const MyInput : React.FC<Props> = ({ ...props }) => {
     return (
         <div className="flex flex-col relative m-4">
             <input
-                className={"p-2 outline-none border-b-2 focus:border-b-gray-400 transition animate__rubberBand border-b-gray-100"}
+                className={"p-2 outline-none bg-transparent border-b-2 focus:border-b-gray-400 transition animate__rubberBand border-b-gray-100"}
                 {...props}
                 {...field}
             />
