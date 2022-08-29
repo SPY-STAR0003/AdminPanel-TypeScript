@@ -13,7 +13,7 @@ const UsersSlice = createSlice({
         setUsers : ( state, action ) => {
             return {
                 ...state,
-                usersList : action.payload.users,
+                usersList : action.payload.data?.data,
                 errorGetUsers : action.payload.error
             }
         }

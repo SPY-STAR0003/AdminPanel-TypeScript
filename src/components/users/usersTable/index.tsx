@@ -16,6 +16,7 @@ import TableContent from "./content";
 
 // services
 import { GetUsersWithSWR } from "../../../services/users";
+import Pagination from "../../global/pagination";
 
 
 const UsersTable : React.FC = () => {
@@ -23,16 +24,16 @@ const UsersTable : React.FC = () => {
   const [page, setPage] = useState<number>(1)
   const dispatch = useDispatch();
 
-  const {data : users , error} = useSWR(
+  const {data , error} = useSWR(
     ["https://62b6ea7b76028b55ae716ba0.endapi.io/users_typescript" , page],
     GetUsersWithSWR
   )
   
   useEffect(() => {
-    dispatch(setUsers({users, error}))
-  }, [users, error, dispatch])
+    dispatch(setUsers({data , error}))
+  }, [data, error, dispatch])
 
-  const loading = !users || !error
+  const loading = !data?.users || !error
 
   return (
     <>
@@ -46,7 +47,10 @@ const UsersTable : React.FC = () => {
                 text={"Opos! No Data Found ! Please Refersh the Page ! "}
               />
             :
-              <TableContent />
+              <>
+                <TableContent />
+                <Pagination page={page} setPage={setPage} totalPages={data?.meta.totalPages} />
+              </>
         :
           <ErrorIcon
             icon={infinityLoading}
