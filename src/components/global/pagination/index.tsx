@@ -24,7 +24,7 @@ const Pagination : React.FC<PaginationProps> = ({page, setPage, totalPages}) => 
             </div>
                 {
                     Array.from(Array(totalPages).keys()).map((item : number, index : number) => (
-                        <div onClick={() => setPage(item+1)} className="w-10 h-10 text-lg flex items-center justify-center bg-gray-200/80 text-gray-500 transition hover:bg-gray-800 hover:text-gray-200 cursor-pointer p-3 rounded-full" key={index}>
+                        <div onClick={() => setPage(item+1)} className={`${page === item+1 ? "bg-gray-600 text-gray-200" : "bg-gray-200/80 text-gray-500" } w-10 h-10 text-lg flex items-center justify-center transition hover:bg-gray-800 hover:text-gray-200 cursor-pointer p-3 rounded-full`}key={index}>
                             {item + 1 }
                         </div>
                     ))
