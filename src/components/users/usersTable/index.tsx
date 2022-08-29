@@ -1,44 +1,58 @@
 // react
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+// assets
+import infinityLoading from "./../../../assets/icons/Infinity-1s-200px.svg";
+import noDataError from "../../../assets/icons/No-Data-Error.gif";
 
 // redux
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../../../store";
+import { useDispatch } from "react-redux";
 import { setUsers } from "../../../store/slices/users";
 
-// components
-import TableHeader from "./header";
-import TableBody from "./body";
-import { Category } from "../../../assets/icons/icons";
-
 // types
-import { UserType } from "../../../types/users";
+import useSWR from "swr";
+import ErrorIcon from "../../global/error/errorIcon";
+import TableContent from "./content";
 
 // services
-import { DeleteUser, GetUsers } from "../../../services/users";
+import { GetUsersWithSWR } from "../../../services/users";
+
 
 const UsersTable : React.FC = () => {
 
-  const users : UserType[] = useSelector((state : RootState ) => state.users.usersList )
-  
-  const dispatch = useDispatch<AppDispatch>()
+  const [page, setPage] = useState<number>(1)
+  const dispatch = useDispatch();
 
-  const deleteHandler = async (id : number) => {
-    await DeleteUser(id)
-    let newUsers = await GetUsers()
-    dispatch(setUsers(newUsers))
-  }
+  const {data : users , error} = useSWR(
+    ["https://62b6ea7b76028b55ae716ba0.endapi.io/users_typescript" , page],
+    GetUsersWithSWR
+  )
+  
+  useEffect(() => {
+    dispatch(setUsers({users, error}))
+  }, [users, error, dispatch])
+
+  const loading = !users || !error
 
   return (
     <>
-      <header className={"relative flex justify-center mt-4 mb-8"}>
-        <Category classes="absolute top-3 md:hidden block left-0 w-8 h-8" color="#200E32"/>
-        <h2 className={"first-letter:text-4xl first-letter:font-bold text-2xl text-gray-500"}> Website Users </h2>
-      </header>
-      <table className={"w-full"}>
-        <TableHeader />
-        <TableBody />
-      </table>
+      {
+        loading
+        ?
+          error?.message === "Failed to fetch"
+            ? 
+              <ErrorIcon
+                icon={noDataError}
+                text={"Opos! No Data Found ! Please Refersh the Page ! "}
+              />
+            :
+              <TableContent />
+        :
+          <ErrorIcon
+            icon={infinityLoading}
+            text={"Getting data form server ..."}
+          />
+      }
     </>
   );
 }

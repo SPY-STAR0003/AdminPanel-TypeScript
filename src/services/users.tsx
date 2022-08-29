@@ -11,4 +11,22 @@ export const DeleteUser = async (id : number) => {
     // let jsonData = await data.json();
     // console.log(jsonData.data)
     // return jsonData.data
-} 
+}
+
+export const GetUsersWithSWR = async (url : string, page : number) => {
+
+    const request = await fetch(`${url}?page=${page}&limit=8`)
+
+    if ( !request.ok ) {
+        const error : any = new Error('An error occurred while fetching the data.')
+
+        error.info = await request.json()
+        error.status = request.status
+
+        throw error
+    }
+
+    const response = await request.json()
+
+    return response?.data
+}

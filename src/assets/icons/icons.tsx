@@ -1,4 +1,3 @@
-
 interface Icons {
   classes ?: string,
   color ?: string
