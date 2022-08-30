@@ -21,10 +21,21 @@ module.exports = {
             boxShadow: "0 0 2px #67e8f9",
             transform : "scale(1.01)"
           }
+        },
+        transformToRight : {
+          "0%" : {
+            transform: "translateX(-400px)",
+            opacity:"0"
+          },
+          "100%" : {
+            transform: "translate(0)",
+            opacity: "1"
+          }
         }
       },
       animation: {
-        "heart" : "3s cubic-bezier(0.4, 0, 1, 1) infinite heart"
+        "heart" : "3s cubic-bezier(0.4, 0, 1, 1) infinite heart",
+        "transformToRight" : ".5s cubic-bezier(0.4, 0, 1, 1) transformToRight"
         // animation: 3s ease-in 1s 2 reverse both paused slidein;
 
       }

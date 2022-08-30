@@ -9,7 +9,7 @@ interface UsersProps {
 const Users : React.FC<UsersProps> = ({gridWidth}) => {
 
     return (
-        <div className={`${gridWidth} p-4`}>
+        <div className={`${gridWidth} lg:p-4 p-1`}>
             <UsersTable />
         </div>
     )

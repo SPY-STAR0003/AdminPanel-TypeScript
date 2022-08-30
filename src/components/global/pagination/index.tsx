@@ -22,6 +22,7 @@ const Pagination : React.FC<PaginationProps> = ({page, setPage, totalPages}) => 
             <div onClick={prevUsersPage} className="w-10 h-10 text-lg flex items-center justify-center bg-gray-200/80 text-gray-500 transition hover:bg-gray-800 hover:text-gray-200 cursor-pointer p-3 rounded-full">
                 <LeftSign classes="w-6 h-6" />
             </div>
+            <div className={"space-x-3 justify-center hidden sm:flex"}>
                 {
                     Array.from(Array(totalPages).keys()).map((item : number, index : number) => (
                         <div onClick={() => setPage(item+1)} className={`${page === item+1 ? "bg-gray-600 text-gray-200" : "bg-gray-200/80 text-gray-500" } w-10 h-10 text-lg flex items-center justify-center transition hover:bg-gray-800 hover:text-gray-200 cursor-pointer p-3 rounded-full`}key={index}>
@@ -29,6 +30,7 @@ const Pagination : React.FC<PaginationProps> = ({page, setPage, totalPages}) => 
                         </div>
                     ))
                 }
+            </div>
             <div onClick={nextUsersPage} className="w-10 h-10 text-lg flex items-center justify-center bg-gray-200/80 text-gray-500 transition hover:bg-gray-800 hover:text-gray-200 cursor-pointer p-3 rounded-full">
                 <RightSign classes="w-6 h-6"  />
             </div>
