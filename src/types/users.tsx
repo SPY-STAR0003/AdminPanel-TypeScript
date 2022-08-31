@@ -5,5 +5,5 @@ export type UserType = {
     email?: string,
     role?: string,
     phone?: string,
-    status: "active" | "paused" | "warning",
+    status ?: "active" | "paused" | "warning",
 };

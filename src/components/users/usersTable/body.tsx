@@ -4,26 +4,35 @@ import React from "react";
 // assets
 import noConnenction from "./../../../assets/icons/No-Connection.gif";
 import noUsers from "./../../../assets/icons/noUsers.gif";
+import { Delete, Edit, Eye } from "../../../assets/icons/icons";
+
+// libraries
+import { useSWRConfig } from "swr";
+import { deleteSwal } from "../../../modules/swal";
+
+// redux
+import { RootState } from "../../../store"
+import { useSelector, useDispatch } from "react-redux";
+import { toggleUserModal } from "../../../store/slices/users";
+
+// services
+import { GetUsersWithSWR } from "../../../services/users";
 
 // types
 import {UserType} from "../../../types/users";
-import { Delete, Edit, Eye } from "../../../assets/icons/icons";
-import { useSelector, useDispatch } from "react-redux";
-import { deleteSwal } from "../../../modules/swal";
-import useSWR from "swr";
 
 const TableBody : React.FC = () => {
 
-    const dispatch = useDispatch()
-    const errorStatusCode = useSelector((state : any) => state?.users?.error?.status)
-    const users = useSelector((state : any) => state?.users?.usersList)
-    const mutate = useSelector((state : any) => state?.users?.mutate)
+    const dispatch = useDispatch();
+    const { mutate } = useSWRConfig()
+    const errorStatusCode = useSelector((state : RootState) => state?.users?.errorGetUsers?.status)
+    const {usersList : users , page} = useSelector((state : RootState) => state?.users)
 
     const deleteHandler = async (name ?: string , id ?: number) => {
         const deleteUser : boolean = await deleteSwal(name, id)
         
         if(deleteUser) {
-            mutate()
+            mutate(["https://62b6ea7b76028b55ae716ba0.endapi.io/users_typescript" , page] ,GetUsersWithSWR)
         }
     }
 
@@ -57,7 +66,7 @@ const TableBody : React.FC = () => {
                                     <td className={"py-4 text-gray-500 flex justify-center space-x-4"}>
                                         <Edit color="#4ade80" classes="w-6 h-6 md:table-cell hidden" />
                                         <Delete onClick={() => deleteHandler(item.name, item.id)} color="#f43f5e" classes="w-6 h-6" />
-                                        <Eye color="#22d3ee" classes="w-6 h-6 md:table-cell hidden"/>
+                                        <Eye onClick={() => dispatch(toggleUserModal(item))} color="#22d3ee" classes="w-6 h-6 md:table-cell hidden"/>
                                     </td>
                                 </tr>
                 ))

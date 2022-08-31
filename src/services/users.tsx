@@ -31,5 +31,7 @@ export const GetUsersWithSWR = async (url : string, page : number) => {
         throw error
     }
     
-    return request.json()
+    let data = await request.json()
+
+    return data
 }
