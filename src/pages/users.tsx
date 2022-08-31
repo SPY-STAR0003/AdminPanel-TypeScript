@@ -15,7 +15,7 @@ const UsersPage : React.FC = () => {
         if(window.innerWidth >= 768) {
             setShowNavbar(true)
         }
-    }, [window.innerWidth])
+    }, [])
 
     return (
         <div className={"relative grid grid-cols-12"}>

@@ -24,14 +24,14 @@ const UsersTable : React.FC = () => {
   const [page, setPage] = useState<number>(1)
   const dispatch = useDispatch();
 
-  const {data , error} = useSWR(
+  const {data , error, mutate} = useSWR(
     ["https://62b6ea7b76028b55ae716ba0.endapi.io/users_typescript" , page],
     GetUsersWithSWR
   )
   
   useEffect(() => {
-    dispatch(setUsers({data , error}))
-  }, [data, error, dispatch])
+    dispatch(setUsers({data , error, mutate}))
+  }, [data, error,mutate, dispatch])
 
   const loading = !data?.users || !error
 

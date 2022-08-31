@@ -8,12 +8,24 @@ import noUsers from "./../../../assets/icons/noUsers.gif";
 // types
 import {UserType} from "../../../types/users";
 import { Delete, Edit, Eye } from "../../../assets/icons/icons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteSwal } from "../../../modules/swal";
+import useSWR from "swr";
 
 const TableBody : React.FC = () => {
 
+    const dispatch = useDispatch()
     const errorStatusCode = useSelector((state : any) => state?.users?.error?.status)
     const users = useSelector((state : any) => state?.users?.usersList)
+    const mutate = useSelector((state : any) => state?.users?.mutate)
+
+    const deleteHandler = async (name ?: string , id ?: number) => {
+        const deleteUser : boolean = await deleteSwal(name, id)
+        
+        if(deleteUser) {
+            mutate()
+        }
+    }
 
     return (
         <tbody>
@@ -44,7 +56,7 @@ const TableBody : React.FC = () => {
                                     <td className={"py-4 text-gray-500"}> {item?.status} </td>
                                     <td className={"py-4 text-gray-500 flex justify-center space-x-4"}>
                                         <Edit color="#4ade80" classes="w-6 h-6 md:table-cell hidden" />
-                                        <Delete color="#f43f5e" classes="w-6 h-6" />
+                                        <Delete onClick={() => deleteHandler(item.name, item.id)} color="#f43f5e" classes="w-6 h-6" />
                                         <Eye color="#22d3ee" classes="w-6 h-6 md:table-cell hidden"/>
                                     </td>
                                 </tr>

@@ -11,6 +11,7 @@ import App from './App';
 
 // public files
 import './index.css';
+import 'sweetalert2/src/sweetalert2.scss';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

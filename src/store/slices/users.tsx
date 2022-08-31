@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let initialState : any = {
     usersList : [],
-    errorGetUsers : {}
+    errorGetUsers : {},
+    mutate : null
 };
 
 const UsersSlice = createSlice({
@@ -14,7 +15,8 @@ const UsersSlice = createSlice({
             return {
                 ...state,
                 usersList : action.payload.data?.data,
-                errorGetUsers : action.payload.error
+                errorGetUsers : action.payload.error,
+                mutate : action.payload.mutate
             }
         }
     }
