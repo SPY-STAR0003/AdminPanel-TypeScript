@@ -1,5 +1,5 @@
 // react
-import React from "react";
+import React, { useRef } from "react";
 
 // assets
 import { User } from "../../../assets/icons/icons";
@@ -17,11 +17,18 @@ import { UserType } from "../../../types/users";
 
 const UserModal : React.FC = () => {
 
+    const myModal = useRef(null)
     const dispatch = useDispatch<AppDispatch>();
     const user : UserType = useSelector((state : RootState) => state.users.showingUser)
 
+    const closeModal : React.MouseEventHandler<HTMLDivElement> = (e) => {
+        if(myModal.current === e.target) {
+            dispatch(toggleUserModal(user))
+        }
+    }
+
     return (
-        <div className={"fixed flex bg-white/70 w-full h-full items-center justify-center top-0 left-0 z-50"}>
+        <div ref={myModal} onClick={closeModal} className={"fixed flex bg-white/70 w-full h-full items-center justify-center top-0 left-0 z-50 animate-fadeScale"}>
             <div className="relative">
                 <span onClick={() => dispatch(toggleUserModal(user))} className={"absolute cursor-pointer top-0 right-3 rotate-45 text-6xl z-50 text-gray-600 hover:text-gray-300"}> + </span>
                 <div className={"flex flex-col p-8 backdrop-blur-md glass w-[48rem] h-[28rem]"}>

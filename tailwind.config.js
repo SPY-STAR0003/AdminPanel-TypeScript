@@ -31,11 +31,26 @@ module.exports = {
             transform: "translate(0)",
             opacity: "1"
           }
+        },
+        fadeScale : {
+          "0%" : {
+            transform: "scale(0.1)",
+            opacity: "0",
+          },
+          "70%" : {
+            transform: "scale(1.2)",
+            opacity: "1"
+          },
+          "100%" : {
+            transform: "scale(1)",
+            opacity: "1",
+          }
         }
       },
       animation: {
         "heart" : "3s cubic-bezier(0.4, 0, 1, 1) infinite heart",
-        "transformToRight" : ".5s cubic-bezier(0.4, 0, 1, 1) transformToRight"
+        "transformToRight" : ".5s cubic-bezier(0.4, 0, 1, 1) transformToRight",
+        "fadeScale" : ".5s cubic-bezier(0.4, 0, 1, 1) both fadeScale"
         // animation: 3s ease-in 1s 2 reverse both paused slidein;
 
       }

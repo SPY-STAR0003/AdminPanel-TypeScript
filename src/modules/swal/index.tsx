@@ -32,7 +32,7 @@ export const deleteSwal = async (name ?: string , id ?: number) => {
             if(deleteUser) {
                 swalWithBootstrapButtons.fire(
                     'Deleted!',
-                    'Your file has been deleted.',
+                    `${name} has been deleted.'`,
                     'success'
                 )
 
@@ -63,4 +63,25 @@ export const deleteSwal = async (name ?: string , id ?: number) => {
     })
 
     return response;
+}
+
+type iconType = 'warning' | 'error'| 'success'| 'info' | 'question'
+
+export const Toast  = (icon : iconType, message : string) => {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'bottom-start',
+        showConfirmButton: false,
+        timer: 4000,
+        timerProgressBar: true,
+        didOpen: (toast : HTMLElement ) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: icon,
+        title: message
+      })
 }

@@ -11,11 +11,18 @@ import FormMain from "./form";
 
 const AddUserForm : React.FC = () => {
     
+    const addUserModal = useRef<HTMLDivElement>(null)
     const [showAddUsersForm, setShowAddUsersForm ] = useState(false)
+
+    const closeForm : React.MouseEventHandler<HTMLDivElement> = (e) => {
+        if(addUserModal.current === e.target) {
+            setShowAddUsersForm(false)
+        }
+    }
 
     return (
         <>
-            <div className={`${showAddUsersForm ? "flex overflow-auto" : "hidden" } fixed items-center justify-center bg-white/60 w-full h-screen z-50`}>
+            <div ref={addUserModal} onClick={closeForm} className={`${showAddUsersForm ? "flex overflow-auto" : "hidden" } animate-fadeScale fixed items-center justify-center bg-white/60 w-full h-screen z-50`}>
                 <div className={"relative flex items-center justify-center"}>
                     <div className={"flex flex-col items-center glass p-4 md:w-[50rem] sm:w-[30rem] w-[20rem] overflow-visible rounded-md"}>
                         <FormHeader />

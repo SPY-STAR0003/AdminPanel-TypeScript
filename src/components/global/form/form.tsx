@@ -11,7 +11,12 @@ import FormBtns from "./btns";
 import { FormValues } from "../../../types/form";
 
 // libraries
-import { Formik, FormikErrors, Form, Field, ErrorMessage } from "formik";
+import { Formik, FormikErrors, Form} from "formik";
+
+// services
+import { GetUsersWithSWR, SetUser } from "../../../services/users";
+import { Toast } from "../../../modules/swal";
+import useSWR from "swr";
 
 interface FormMainProps {
     setShowAddUsersForm : React.Dispatch<React.SetStateAction<boolean>>,
@@ -19,6 +24,11 @@ interface FormMainProps {
 }
 
 const FormMain : React.FC<FormMainProps> = ({setShowAddUsersForm, showAddUsersForm}) => {
+
+    const { mutate } = useSWR(
+        ["https://62b6ea7b76028b55ae716ba0.endapi.io/users_typescript", 1],
+        GetUsersWithSWR
+    )
 
     const formRef = useRef<HTMLFormElement>(null)
 
@@ -40,8 +50,15 @@ const FormMain : React.FC<FormMainProps> = ({setShowAddUsersForm, showAddUsersFo
         return errors
     }
 
-    const onSubmit = (values : FormValues) => {
-        console.log(values)
+    const onSubmit = async (values : FormValues) => {
+        
+        const isSuccess = await SetUser(values)
+
+        if(isSuccess) Toast("success", `${values.name} has added to users list`)
+        
+        setShowAddUsersForm(false)
+
+        mutate();
     }
 
     return (

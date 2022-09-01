@@ -1,9 +1,6 @@
+import { FormValues } from "./form";
 
-export type UserType = {
-    id: number,
-    name?: string,
-    email?: string,
-    role?: string,
-    phone?: string,
-    status ?: "active" | "paused" | "warning",
-};
+export interface UserType extends FormValues {
+    id: number
+}
+

@@ -1,7 +1,7 @@
 export interface FormValues {
-    name: "",
-    role: "",
-    email: "",
-    phone: "",
-    status : "active" | "warning" | "paused"
+    name ?: string,
+    role ?: string,
+    email ?: string,
+    phone ?: string,
+    status ?: "active" | "warning" | "paused"
 }

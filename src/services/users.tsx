@@ -1,3 +1,6 @@
+import { Toast } from "../modules/swal";
+import { FormValues } from "../types/form";
+
 export const GetUsers = async () => {
     let data = await fetch("https://62b6ea7b76028b55ae716ba0.endapi.io/users_typescript")
     let jsonData = await data.json();
@@ -11,11 +14,8 @@ export const DeleteUser = async (id ?: number) => {
 
     let jsonData = await data.json();
 
-    if(jsonData?.message === "Successfully removed") {
-        return true
-    } else {
-        return false
-    }
+    return jsonData?.message === "Successfully removed" ? true : false
+
 }
 
 export const GetUsersWithSWR = async (url : string, page : number) => {
@@ -34,4 +34,17 @@ export const GetUsersWithSWR = async (url : string, page : number) => {
     let data = await request.json()
 
     return data
+}
+
+export const SetUser = async (data : FormValues) => {
+    const request = await fetch("https://62b6ea7b76028b55ae716ba0.endapi.io/users_typescript", {
+        method: "POST",
+        headers : {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    }).catch(() => Toast("error" , "Unfortunately somithing goes wrong refresh the page and try again"))
+    
+    
+    return true
 }

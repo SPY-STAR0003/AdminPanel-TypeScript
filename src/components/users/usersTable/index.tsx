@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 
 // assets
-import infinityLoading from "./../../../assets/icons/Infinity-1s-200px.svg";
-import noDataError from "../../../assets/icons/No-Data-Error.gif";
+import infinityLoading from "./../../../assets/icons/infinityLoading.svg";
+import noDataError from "../../../assets/icons/noData.gif";
 
 // redux
 import { useDispatch } from "react-redux";
